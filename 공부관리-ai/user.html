@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+</head>
+
+<body class="wb" onload="setData2()">
+    <header>
+        <nav><a id="home" href="index.html">알려줘</a>
+            <div class="header-right">
+                <a href="./ai.html">AI 커리큘럼</a>
+                <a href="./login.html">로그아웃</a>
+                <a href="./user.html">마이페이지</a>
+                <a href="#" id="header-btn">START STUDY</a>
+            </div>
+        </nav>
+    </header>
+    <div class="contents">
+        <h1>마이페이지</h1>
+        <div class="ai-box">
+            <div class="my-form">
+
+                <div class="t3">회원정보</div>
+                <table class="type09">
+                    <thead>
+                        <tr>
+                            <th scope="cols"></th>
+                            <th scope="cols"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">성명</th>
+                            <td><input id="username"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">목표</th>
+                            <td><input id="goal"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">공부시작일</th>
+                            <td><input id="sdate"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">일평균 공부시간</th>
+                            <td><input id="avgStudy">시간</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">TOTAL공부시간</th>
+                            <td><input id="total">시간</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">코스</th>
+                            <td><input id="course"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bottom">
+
+                <button type="button" onclick="updateUser()">저장하기</button>
+            </div>
+            <div class="my-form">
+
+                <div class="t3">모의고사 점수 이력</div>
+                <table class="type09">
+                    <thead>
+                        <tr>
+                            <th scope="cols"></th>
+                            <th scope="cols"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">2023.06.30</th>
+                            <td>100점</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2023.03.30</th>
+                            <td>80점</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2023.09.30</th>
+                            <td>83점</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div style="display: none;">모의고사 점수 : <span id="score"></span>점</div>
+            </div>
+            <div class="bottom">
+
+                <input type="number" placeholder="100"><button type="button">점수추가</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

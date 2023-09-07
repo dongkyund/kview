@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body class="wb" onload="passCheck()">
+    <header>
+        <nav><a id="home" href="index.html">알려줘</a>
+            <div class="header-right">
+                <a href="./ai.html">AI 커리큘럼</a>
+                <a href="./login.html">로그아웃</a>
+                <a href="./user.html">마이페이지</a>
+                <a href="#" id="header-btn">START STUDY</a>
+            </div>
+        </nav>
+    </header>
+    <div class="contents">
+        <h1>합격 예측 진단</h1>
+        <div class="ai-box">
+            <h1>chatGPT API</h1>
+            <div>무엇이든 질문해보세요 !!</div>
+
+            <input type="text" id="keywords" name="keywords" required />
+            <button onclick="chatGPT()">입력</button>
+            <div id="result"></div>
+
+            <div id="loading">
+                <img src="https://studentrights.sen.go.kr/images/common/loading.gif">
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#loading').hide();
+                });
+
+                function chatGPT() {
+                    const api_key = "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"  // <- API KEY 입력
+                    const keywords = document.getElementById('keywords').value
+                    $('#loading').show();
+
+                    const messages = [
+                        { role: 'system', content: 'You are a helpful assistant.' },
+                        { role: 'user', content: keywords + '에 대하여 최대한 도움이 되는 답변을 해줘.' },
+                    ]
+
+                    const data = {
+                        model: 'gpt-3.5-turbo',
+                        temperature: 0.5,
+                        n: 1,
+                        messages: messages,
+                    }
+
+                    $.ajax({
+                        url: "https://api.openai.com/v1/chat/completions",
+                        method: 'POST',
+                        headers: {
+                            Authorization: "Bearer " + api_key,
+                            'Content-Type': 'application/json',
+                        },
+                        data: JSON.stringify(data),
+                    }).then(function (response) {
+                        $('#loading').hide();
+                        console.log(response)
+                        let result = document.getElementById('result')
+                        let pre = document.createElement('pre')
+
+                        pre.innerHTML = "\n\n" + response.choices[0].message.content
+                        result.appendChild(pre)
+
+                        document.getElementById('keywords').value = ''
+                    });
+                }
+            </script>
+        </div>
+    </div>
+
+</body>
+
+</html>
